@@ -35,7 +35,9 @@ python3 vErtex.py
 
 📦 Requisitos previos
 Para que la captura de pantalla funcione correctamente, necesitas tener instalado el driver de Firefox (Geckodriver):
+```bash
 sudo apt update
 sudo apt install firefox-geckodriver
+```
 ⚠️ Aviso Legal
 Este programa ha sido creado exclusivamente con fines educativos y de auditoría ética. El autor no se hace responsable del mal uso de esta herramienta contra objetivos sin autorización previa.
