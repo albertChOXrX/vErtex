@@ -1,159 +1,164 @@
-import requests
+import requests, os, urllib3, socket, ssl
 import dns.resolver
-import os
-import urllib3
-import socket
-import ssl
 from colorama import Fore, Style, init
 from fpdf import FPDF
 from datetime import datetime
 
-# Configuración inicial
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 init(autoreset=True)
 
 def show_banner():
     os.system('clear')
-    banner = f"""
-{Fore.CYAN}{Style.BRIGHT}
-        __   __        _            
-        \ \ / /__ _ __| |_ _____ __ 
-         \ V / -_) '_ \  _/ -_) \ / 
-          \_/\___|_|  \__\___/_\_\  
-                                    
-        {Fore.WHITE}Ultimate Security & Forensics Suite v3.0
-        {Fore.RED}Nombre del Programa: vErtex
-        {Fore.RED}Autor: albertChOXrX
-{Style.RESET_ALL}"""
-    print(banner)
+    print(f"""{Fore.CYAN}{Style.BRIGHT}
+    ██╗   ██╗███████╗██████╗ ████████╗███████╗██╗  ██╗
+    ██║   ██║██╔════╝██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝
+    ██║   ██║█████╗  ██████╔╝   ██║   █████╗   ╚███╔╝ 
+    ╚██╗ ██╔╝██╔══╝  ██╔══██╗   ██║   ██╔══╝   ██╔██╗ 
+     ╚████╔╝ ███████╗██║  ██║   ██║   ███████╗██╔╝ ██╗
+      ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝ v4.0
+    {Fore.WHITE}The Ultimate Security Suite | {Fore.RED}Author: albertChOXrX
+    """)
 
-class RAJA_Report(FPDF):
+class UltraReport(FPDF):
     def header(self):
-        self.set_font('Arial', 'B', 15)
-        self.cell(0, 10, 'vErtex: REPORT DE AUDITORIA INTEGRAL', 0, 1, 'C')
+        # Banner superior profesional
+        self.set_fill_color(15, 25, 35)
+        self.rect(0, 0, 210, 35, 'F')
+        self.set_font('Arial', 'B', 22)
+        self.set_text_color(255, 255, 255)
+        self.cell(0, 15, 'vErtex | ADVANCED INTELLIGENCE', 0, 1, 'L')
+        self.set_font('Arial', '', 9)
+        self.cell(0, 5, f'Audit ID: {datetime.now().strftime("%Y%m%d%H%M")}', 0, 0, 'L')
+        self.cell(0, 5, f'Fecha: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}  ', 0, 1, 'R')
+        self.ln(12)
+
+    def draw_section(self, title):
         self.ln(5)
+        self.set_font('Arial', 'B', 12)
+        self.set_fill_color(240, 240, 240)
+        self.set_text_color(15, 25, 35)
+        self.cell(0, 10, f"  {title.upper()}", 0, 1, 'L', True)
+        self.ln(3)
 
 class vErtexEngine:
     def __init__(self, target):
         self.target = target.replace("https://", "").replace("http://", "").strip("/")
         self.results = []
-        self.pdf = RAJA_Report()
+        self.pdf = UltraReport()
         self.screenshot_path = None
-        self.target_ip = None
-        self.scan_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.target_ip = "N/A"
 
-    def log(self, text, status="info"):
-        timestamp = datetime.now().strftime('%H:%M:%S')
-        self.results.append((status, text))
-        color = Fore.GREEN if status == "success" else Fore.RED if status == "error" else Fore.BLUE
-        symbol = "[✓]" if status == "success" else "[✗]" if status == "error" else "[*]"
-        print(color + f" [{timestamp}]{symbol} {text}")
+    def log(self, cat, msg, level="INFO"):
+        self.results.append({"cat": cat, "msg": msg, "level": level})
+        color = Fore.RED if level == "CRITICAL" else Fore.YELLOW if level == "MEDIUM" else Fore.GREEN
+        print(f"{color}[*] {cat}: {msg}")
 
-    # 1. MÓDULO RED (DNS & PORTS)
-    def network_recon(self):
-        self.log("--- FASE 1: RECONOCIMIENTO DE RED ---")
+    def run_all(self):
+        # 1. INFRAESTRUCTURA (DNS & IP)
         try:
             self.target_ip = socket.gethostbyname(self.target)
-            self.log(f"IP Objetivo: {self.target_ip}", "success")
-            
-            # DNS
+            self.log("NETWORK", f"IP Address: {self.target_ip}", "SUCCESS")
             answers = dns.resolver.resolve(self.target, 'A')
-            for rdata in answers: self.log(f"Registro DNS A: {rdata}", "success")
-            
-            # Escaneo rápido de puertos críticos
-            ports = [21, 22, 80, 443, 3306, 8080]
-            for port in ports:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s.settimeout(0.3)
-                if s.connect_ex((self.target_ip, port)) == 0:
-                    self.log(f"Puerto Abierto: {port}", "success")
-                s.close()
-        except: self.log("Error en fase de red", "error")
+            for rdata in answers: self.log("DNS", f"A Record found: {rdata}", "SUCCESS")
+        except: self.log("NETWORK", "Failed DNS Resolution", "CRITICAL")
 
-    # 2. MÓDULO GEOPOSICIÓN
-    def get_geo(self):
-        self.log("--- FASE 2: GEOLOCALIZACION ---")
+        # 2. GEOLOCALIZACION (De la v3.2)
         try:
             data = requests.get(f"http://ip-api.com/json/{self.target_ip}", timeout=5).json()
-            if data.get('status') == 'success':
-                info = f"Ubicacion: {data['city']}, {data['country']} | ISP: {data['isp']}"
-                self.log(info, "success")
-        except: self.log("Error al rastrear ubicación", "error")
+            if data['status'] == 'success':
+                self.log("GEO", f"Country: {data['country']} ({data['city']})", "SUCCESS")
+                self.log("GEO", f"ISP: {data['isp']} | Org: {data.get('org')}", "INFO")
+        except: self.log("GEO", "Geolocation service unavailable", "MEDIUM")
 
-    # 3. MÓDULO FORENSE (SSL & HEADERS)
-    def forensics(self):
-        self.log("--- FASE 3: ANALISIS FORENSE ---")
-        # SSL
+        # 3. ESCANEO DE PUERTOS (NMAP Style)
+        ports = {21: "FTP", 22: "SSH", 80: "HTTP", 443: "HTTPS", 3306: "MySQL", 8080: "HTTP-ALT"}
+        for port, service in ports.items():
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(0.4)
+            if s.connect_ex((self.target_ip, port)) == 0:
+                self.log("PORT", f"Service {service} is OPEN on port {port}", "MEDIUM")
+            s.close()
+
+        # 4. FORENSE & VULNERABILIDADES
         try:
-            context = ssl.create_default_context()
+            res = requests.get(f"https://{self.target}", timeout=5, verify=False)
+            h = res.headers
+            self.log("FORENSIC", f"Server Banner: {h.get('Server', 'Hidden')}", "SUCCESS")
+            if 'X-Frame-Options' not in h: self.log("VULN", "Clickjacking Vulnerability (No X-Frame)", "MEDIUM")
+            if 'Content-Security-Policy' not in h: self.log("VULN", "XSS Vulnerability (No CSP)", "CRITICAL")
+            
+            # Analisis SSL
+            ctx = ssl.create_default_context()
             with socket.create_connection((self.target, 443), timeout=3) as sock:
-                with context.wrap_socket(sock, server_hostname=self.target) as ssock:
+                with ctx.wrap_socket(sock, server_hostname=self.target) as ssock:
                     cert = ssock.getpeercert()
                     issuer = dict(x[0] for x in cert['issuer'])
-                    self.log(f"Certificado emitido por: {issuer.get('organizationName')}", "success")
-        except: self.log("Sin SSL o certificado no válido", "error")
-        
-        # Headers & Tech
-        try:
-            res = requests.get(f"http://{self.target}", timeout=5, verify=False)
-            server = res.headers.get('Server', 'Oculto')
-            self.log(f"Web Server: {server}", "success")
-            if 'wp-content' in res.text: self.log("CMS: WordPress detectado", "success")
-        except: self.log("Error en fingerprinting", "error")
+                    self.log("SSL", f"Certificate Issued by: {issuer.get('organizationName')}", "SUCCESS")
+        except: pass
 
-    # 4. MÓDULO VISUAL (SCREENSHOT)
-    def visual_capture(self):
-        self.log("--- FASE 4: CAPTURA VISUAL ---")
+        # 5. CAPTURA VISUAL
         from selenium import webdriver
         from selenium.webdriver.firefox.options import Options
         import time
         options = Options()
         options.add_argument("--headless")
-        options.set_preference("accept_insecure_certs", True)
         try:
-            driver = webdriver.Firefox(options=options)
-            driver.get(f"http://{self.target}")
-            time.sleep(4)
-            path = f"evidencia_{self.target.replace('.', '_')}.png"
-            driver.save_screenshot(path)
-            self.screenshot_path = path
-            driver.quit()
-            self.log("Captura visual completada", "success")
-        except: self.log("Error en captura visual", "error")
+            dr = webdriver.Firefox(options=options)
+            dr.get(f"http://{self.target}")
+            time.sleep(3)
+            self.screenshot_path = f"ev_{self.target.replace('.','_')}.png"
+            dr.save_screenshot(self.screenshot_path)
+            dr.quit()
+        except: self.log("VISUAL", "Screenshot capture failed", "MEDIUM")
 
     def generate_pdf(self):
         self.pdf.add_page()
-        self.pdf.set_font("Arial", 'B', 12)
-        self.pdf.cell(0, 10, f"vErtex Report - {self.scan_time}", ln=True)
-        self.pdf.cell(0, 10, f"TARGET: {self.target}", ln=True)
-        self.pdf.ln(5)
         
-        if self.screenshot_path and os.path.exists(self.screenshot_path):
-            self.pdf.image(self.screenshot_path, x=10, w=180)
-            self.pdf.ln(115)
+        # Resumen Ejecutivo
+        self.pdf.set_fill_color(30, 40, 50)
+        self.pdf.set_text_color(255, 255, 255)
+        self.pdf.set_font("Arial", 'B', 12)
+        self.pdf.cell(190, 12, f"  TARGET: {self.target} | IP: {self.target_ip}", 0, 1, 'L', True)
+        self.pdf.set_text_color(0)
 
-        self.pdf.set_font("Arial", size=9)
-        for status, text in self.results:
-            try:
-                clean_text = text.encode('latin-1', 'ignore').decode('latin-1')
-                self.pdf.multi_cell(0, 6, f"[{status.upper()}] {clean_text}")
-            except: continue
+        # Evidencia Visual
+        self.pdf.draw_section("Digital Evidence (Screenshot)")
+        if self.screenshot_path:
+            self.pdf.image(self.screenshot_path, x=15, w=180, h=95)
+            self.pdf.ln(100)
 
-        name = f"Reporte_Completo_{self.target.replace('.', '_')}.pdf"
+        # Tabla de Hallazgos Integrada
+        self.pdf.draw_section("Technical Findings & Vulnerability Matrix")
+        self.pdf.set_font("Arial", 'B', 10)
+        self.pdf.set_fill_color(220, 225, 230)
+        self.pdf.cell(35, 8, " CATEGORY", 1, 0, 'L', True)
+        self.pdf.cell(120, 8, " FINDING", 1, 0, 'L', True)
+        self.pdf.cell(35, 8, " SEVERITY", 1, 1, 'L', True)
+
+        self.pdf.set_font("Arial", '', 9)
+        for r in self.results:
+            # Color de texto basado en severidad
+            if r['level'] == "CRITICAL": self.pdf.set_text_color(200, 0, 0)
+            elif r['level'] == "MEDIUM": self.pdf.set_text_color(200, 140, 0)
+            elif r['level'] == "SUCCESS": self.pdf.set_text_color(0, 120, 0)
+            else: self.pdf.set_text_color(0, 0, 0)
+
+            self.pdf.cell(35, 7, f" {r['cat']}", 1, 0)
+            self.pdf.cell(120, 7, f" {r['msg'][:70]}", 1, 0)
+            self.pdf.cell(35, 7, f" {r['level']}", 1, 1)
+            self.pdf.set_text_color(0)
+
+        name = f"vErtex_ULTIMATE_{self.target.replace('.','_')}.pdf"
         self.pdf.output(name)
-        print(Fore.YELLOW + f"\n[+] Auditoria finalizada. Reporte: {name}")
+        print(f"\n{Fore.CYAN}[+] vErtex v4.0: Reporte definitivo generado: {name}")
 
 def main():
     show_banner()
-    t = input(Fore.YELLOW + "🎯 Ingrese URL (ej: google.com): ")
+    t = input(f"{Fore.YELLOW}🎯 Enter Target URL: ")
     if not t: return
-
     v = vErtexEngine(t)
-    v.network_recon()   # Red y Puertos
-    v.get_geo()         # Geo
-    v.forensics()       # SSL y Huellas
-    v.visual_capture()  # Foto
-    v.generate_pdf()    # Reporte Final
+    v.run_all()
+    v.generate_pdf()
 
 if __name__ == "__main__":
     main()
