@@ -122,6 +122,18 @@ class RajaEngine:
             print(Fore.YELLOW + f"\n[+] SISTEMA: Reporte final generado en {filename}")
         except Exception as e:
             print(Fore.RED + f"\n[!] Error al guardar PDF: {e}")
+def get_geo(self):
+        self.log("Rastreando ubicación del servidor...")
+        try:
+            import socket
+            ip = socket.gethostbyname(self.target)
+            data = requests.get(f"http://ip-api.com/json/{ip}").json()
+            if data['status'] == 'success':
+                info = f"Ubicacion: {data['city']}, {data['country']} ({data['isp']})"
+                self.log(info, "success")
+                self.results.append(("success", f"GEOLOCALIZACIÓN: {info}"))
+        except:
+            self.log("No se pudo obtener la geo-ubicación", "error")
 
 # --- 3. LANZADOR PRINCIPAL ---
 def main():
