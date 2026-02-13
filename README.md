@@ -28,7 +28,7 @@ pip install -r requirements.txt
 sudo apt update && sudo apt install firefox-geckodriver -y
 python3 vErtex.py
 ```
-##📊 Flujo de Auditoría vErtex
+## 📊 Flujo de Auditoría vErtex
 -Recon: Resolución DNS y validación de IP.
 
 -Scan: Mapeo de puertos y servicios activos.
@@ -39,7 +39,7 @@ python3 vErtex.py
 
 -Evidence: Captura visual y generación de reporte PDF.
 
-##📂 Estructura del Proyecto
+## 📂 Estructura del Proyecto
 -vErtex.py: Motor principal de la suite.
 
 -Requirements.txt: Dependencias de Python (requests, fpdf, colorama, selenium, dnspython).
