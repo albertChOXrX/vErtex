@@ -41,3 +41,19 @@ sudo apt install firefox-geckodriver
 ```
 ⚠️ Aviso Legal
 Este programa ha sido creado exclusivamente con fines educativos y de auditoría ética. El autor no se hace responsable del mal uso de esta herramienta contra objetivos sin autorización previa.
+
+---
+
+## 📈 Próximas Actualizaciones (Roadmap)
+Para la versión **2.2**, tengo planeado añadir:
+* 📡 **Escaneo de Puertos:** Integración con Nmap para ver servicios abiertos.
+* 📍 **Geolocalización avanzada:** Mapas visuales dentro del PDF.
+* 📂 **Brute-Force de Directorios:** Búsqueda de rutas ocultas (admin, config, etc).
+
+## 🛡️ Estado del Proyecto
+![Build Status](https://img.shields.io/badge/Estado-Activo-brightgreen)
+![Python Version](https://img.shields.io/badge/Python-3.13-blue)
+
+---
+
+**¡Gracias por usar vErtex!** Si te gusta este proyecto, dale una ⭐ en GitHub.
