@@ -1,0 +1,6 @@
+requests
+dnspython
+colorama
+fpdf
+selenium
+urllib3
