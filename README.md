@@ -1,59 +1,57 @@
-# 🛡️ vErtex v4.2 - Advanced Security Suite
+Gemini said
+Aquí tienes el README.md exactamente igual, siguiendo el patrón de diseño, los colores y la estructura de bloques que me has mostrado. Está listo para copiar y pegar:
 
-**vErtex** es una herramienta de auditoría de seguridad automatizada diseñada para profesionales que buscan consolidar infraestructura, reconocimiento y análisis de código en un solo reporte PDF profesional.
+🚀 vErtex v6.0 - ENTERPRISE EDITION
+vErtex v6.0 es la evolución definitiva de la suite de auditoría avanzada. Diseñada para entornos corporativos, esta versión Enterprise integra escaneo de vulnerabilidades críticas, análisis de infraestructura profunda y un motor de reportes ejecutivos con scoring de riesgo real.
 
-Desarrollado por **albertChOXrX**.
+📈 Historial de Versiones
+Versión	Banner	Descripción
+v6.0		OWASP Scanner + WAF Detect + DNSSEC + API Discovery.
+v4.2		Malware Engine + Vulnerability Matrix + PDF Fix.
+v4.1		Geolocalización + Reportes PDF iniciales.
+v3.0		Escaneo de puertos avanzado y DNS.
+v2.0		Manejo de excepciones y Auto-Banner.
+🚀 Características Principales
+OWASP Vulnerability Scanner:  Detección de XSS, SQLi y LFI.
 
----
+WAF Fingerprinting:  Identificación de Firewalls (20+ Signatures).
 
-## 🚀 Características Principales
+DNS Security Audit:  Análisis de registros SPF, DMARC y CAA.
 
-* **Network Mapping:** Resolución de IP y detección de servicios/puertos críticos (SSH, HTTP, MySQL, etc.).
-* **Geolocation OSINT:** Localización geográfica del servidor y detección del ISP.
-* **Guardian Malware Scanner:** Análisis estático de código fuente para detectar amenazas web.
-* **Digital Evidence:** Captura de pantalla automática de la superficie del objetivo.
-* **Professional PDF Reporting:** Generación instantánea de informes de auditoría con niveles de severidad.
+SSL/TLS Deep Scan:  Auditoría de certificados y cifrados.
 
-## 🛠️ Instalación y Uso
+Network Intelligence:  Mapeo de servicios y versiones.
 
-1. **Clonar y preparar:**
-```bash
-git clone [https://github.com/albertChOXrX/vErtex-AlBERKoma.git](https://github.com/albertChOXrX/vErtex-AlBERKoma.git)
-cd vErtex-AlBERKoma
-pip install -r requirements.txt
-python vertex.py
-```
----
-# 🛡️ vErtex Security Suite
+Enterprise Reporting:  Generación de evidencias y scoring.
 
-![Version](https://img.shields.io/badge/version-4.2-cyan?style=for-the-badge&logo=python)
-![Status](https://img.shields.io/badge/status-active-green?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-red?style=for-the-badge)
+🛠️ Stack Tecnológico (Versiones)
+Componente	Badge	Función
+Requests		Auditoría HTTP/S y Fuzzing de endpoints.
+Dnspython		Resolución y validación de seguridad DNS.
+FPDF		Motor de generación de reportes técnicos.
+Whois		Reconocimiento de dominio y propiedad.
+📊 Sistema de Scoring (Matriz de Riesgo)
+El motor de vErtex evalúa la seguridad del objetivo mediante una puntuación acumulativa:
 
-**vErtex** es una suite de auditoría automatizada desarrollada por **albertChOXrX**. Diseñada para realizar reconocimiento (OSINT), análisis de infraestructura y detección de malware en un solo paso.
+Severidad	Estado	Impacto en el Score
+CRITICAL		-25 Puntos (SQLi, Exposure, RCE).
+HIGH		-15 Puntos (SSL obsoleto, WAF ausente).
+MEDIUM		-10 Puntos (Falta de CSP, HSTS).
+LOW		-5 Puntos (Info Leakage, Banners).
+🛠️ Instalación y Uso
+Optimizado para Kali Linux y sistemas basados en Debian.
 
----
+1. Requisitos del sistema
+Bash
+sudo apt update && sudo apt install chromium-driver -y
+2. Dependencias de Python
+Bash
+pip install requests dnspython python-whois colorama fpdf urllib3 --break-system-packages
+3. Ejecución
+Bash
+python3 vErtex_v6.py -t <objetivo.com> --mode deep
+⚠️ Descargo de Responsabilidad
+Este software ha sido creado para uso profesional en auditorías éticas. El uso de vErtex contra activos sin permiso explícito es una violación de las leyes de ciberseguridad. El autor no asume responsabilidad por daños causados por el mal uso del script.
 
-## 📈 Historial de Versiones
-
-| Versión | Banner | Descripción |
-| :--- | :--- | :--- |
-| **v4.2** | ![v4.2](https://img.shields.io/badge/v4.2-GUARDIAN_UPDATE-cyan) | Malware Engine + Vulnerability Matrix + PDF Fix. |
-| **v4.1** | ![v4.1](https://img.shields.io/badge/v4.1-INTELLIGENCE-blue) | Geolocalización + Reportes PDF iniciales. |
-| **v3.0** | ![v3.0](https://img.shields.io/badge/v3.0-NETWORK_CORE-yellow) | Escaneo de puertos avanzado y DNS. |
-| **v2.0** | ![v2.0](https://img.shields.io/badge/v2.0-DISCOVERY-orange) | Manejo de excepciones y Auto-Banner. |
-
----
-
-## 🚀 Características Principales
-
-* **Guardian Malware Scanner:** ![Malware](https://img.shields.io/badge/Malware_Scan-Enabled-brightgreen) Análisis de código malicioso.
-* **Network Mapping:** ![Network](https://img.shields.io/badge/Net_Scan-Active-blue) Detección de puertos y servicios.
-* **OSINT Geo:** ![Geo](https://img.shields.io/badge/Geo_IP-Live-blueviolet) Localización física de servidores.
-* **Digital Evidence:** ![Visual](https://img.shields.io/badge/Capture-Headless_Chrome-lightgrey) Capturas de pantalla forenses.
----
-
-⚠️ Disclaimer
-Uso exclusivo para fines educativos y auditorías autorizadas. El autor no se responabiliza de cualquier uso indebido.
-
-Developed by albertChOXrX | 2026
+Desarrollado por albertChOXrX
+vErtex: Precision Security & Deep Reconnaissance.
