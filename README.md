@@ -32,7 +32,7 @@
 ## 📈 Historial de Versiones
 
 | Versión | Banner | Descripción |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | **v6.0** | ![v6.0](https://img.shields.io/badge/v6.0-ENTERPRISE_EDITION-cyan) | **12 módulos** · OWASP Scanner · WAF Detection · Professional Reports |
 | **v4.2** | ![v4.2](https://img.shields.io/badge/v4.2-GUARDIAN_UPDATE-cyan) | Malware Engine + Vulnerability Matrix + PDF Fix |
 | **v4.1** | ![v4.1](https://img.shields.io/badge/v4.1-INTELLIGENCE-blue) | Geolocalización + Reportes PDF iniciales |
