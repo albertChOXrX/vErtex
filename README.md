@@ -168,13 +168,13 @@ brew install python3 chromedriver
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/albertChOXrX/vErtex-AlBERKoma.git
-cd vErtex-AlBERKoma
+cd vErtex
 
 # 2. Instalar dependencias
-pip3 install -r requirements.txt
+pip3 install -r requirements1.txt
 
 # 3. Ejecutar vErtex v6.0
-python3 vertex_v6.py
+python3 vErtex.py
 ```
 
 ### Uso Básico
