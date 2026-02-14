@@ -528,8 +528,6 @@ Siempre obtenga autorización explícita antes de escanear cualquier sistema que
 
 - 🐛 **Issues**: [GitHub Issues](https://github.com/albertChOXrX/vErtex-AlBERKoma/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/albertChOXrX/vErtex-AlBERKoma/discussions)
-- 📧 **Email**: security@vertex.dev
-- 🔐 **Security**: Responsible disclosure via email
 
 ---
 
