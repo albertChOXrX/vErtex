@@ -31,13 +31,13 @@
 
 ## 📈 Historial de Versiones
 
-| Versión | Release | Banner | Descripción |
+| Versión | Banner | Descripción |
 | --- | --- | --- | --- |
-| **v6.0** | 2026-02-14 | ![v6.0](https://img.shields.io/badge/v6.0-ENTERPRISE_EDITION-cyan) | **12 módulos** · OWASP Scanner · WAF Detection · Professional Reports |
-| **v4.2** | 2024-XX-XX | ![v4.2](https://img.shields.io/badge/v4.2-GUARDIAN_UPDATE-cyan) | Malware Engine + Vulnerability Matrix + PDF Fix |
-| **v4.1** | 2024-XX-XX | ![v4.1](https://img.shields.io/badge/v4.1-INTELLIGENCE-blue) | Geolocalización + Reportes PDF iniciales |
-| **v3.0** | 2024-XX-XX | ![v3.0](https://img.shields.io/badge/v3.0-NETWORK_CORE-yellow) | Escaneo de puertos avanzado y DNS |
-| **v2.0** | 2024-XX-XX | ![v2.0](https://img.shields.io/badge/v2.0-DISCOVERY-orange) | Manejo de excepciones y Auto-Banner |
+| **v6.0** | ![v6.0](https://img.shields.io/badge/v6.0-ENTERPRISE_EDITION-cyan) | **12 módulos** · OWASP Scanner · WAF Detection · Professional Reports |
+| **v4.2** | ![v4.2](https://img.shields.io/badge/v4.2-GUARDIAN_UPDATE-cyan) | Malware Engine + Vulnerability Matrix + PDF Fix |
+| **v4.1** | ![v4.1](https://img.shields.io/badge/v4.1-INTELLIGENCE-blue) | Geolocalización + Reportes PDF iniciales |
+| **v3.0** | ![v3.0](https://img.shields.io/badge/v3.0-NETWORK_CORE-yellow) | Escaneo de puertos avanzado y DNS |
+| **v2.0** | ![v2.0](https://img.shields.io/badge/v2.0-DISCOVERY-orange) | Manejo de excepciones y Auto-Banner |
 
 ---
 
