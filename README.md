@@ -243,7 +243,7 @@ Security Score: 🟢 85/100 (GOOD)
 
 ### 🔒 Auditoría de Seguridad
 ```bash
-python3 vertex_v6.py
+python3 vErtex.py
 Modo: Normal
 Target: https://mi-empresa.com
 Resultado: PDF profesional con hallazgos
@@ -251,7 +251,7 @@ Resultado: PDF profesional con hallazgos
 
 ### 🐛 Bug Bounty Reconnaissance
 ```bash
-python3 vertex_v6.py
+python3 vErtex.py
 Modo: Deep
 Target: https://target.com
 Focus: APIs, subdominios, backups
@@ -259,7 +259,7 @@ Focus: APIs, subdominios, backups
 
 ### ✅ Compliance Check (PCI-DSS, HIPAA)
 ```bash
-python3 vertex_v6.py
+python3 vErtex.py
 Modo: Normal
 Target: https://payment-gateway.com
 Review: SSL/TLS, headers, cookies
@@ -267,7 +267,7 @@ Review: SSL/TLS, headers, cookies
 
 ### 🎓 Entrenamiento en Ciberseguridad
 ```bash
-python3 vertex_v6.py
+python3 vErtex.py
 Modo: Fast
 Target: http://testphp.vulnweb.com
 Aprendizaje: OWASP Top 10
